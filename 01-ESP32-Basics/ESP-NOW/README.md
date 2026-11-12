@@ -23,15 +23,17 @@ Wireless communication between two ESP32 boards using the ESP-NOW protocol. The 
 
 ## How to Run
 
-1. Upload `rx_serial.ino` to the receiver ESP32 and note its MAC address.
-2. Put that MAC address in `receiverMAC[]` in `tx_dht11.ino`.
-3. Connect the DHT11 data pin to GPIO 4 of the transmitter ESP32.
-4. Upload `tx_dht11.ino` to the transmitter ESP32.
-5. Open the Serial Monitor (115200 baud) on both boards.
+1. Upload `mac_address_finder.ino` to the receiver ESP32 and note its MAC address from the Serial Monitor.
+2. Upload `rx_serial.ino` to the receiver ESP32.
+3. Put the receiver's MAC address in `receiverMAC[]` in `tx_dht11.ino`.
+4. Connect the DHT11 data pin to GPIO 4 of the transmitter ESP32.
+5. Upload `tx_dht11.ino` to the transmitter ESP32.
+6. Open the Serial Monitor (115200 baud) on both boards.
 
 ## Concepts Learned
 
 - Peer-to-peer wireless communication with ESP-NOW
+- Reading the ESP32 MAC address using `WiFi.macAddress()`
 - MAC addressing and peer registration
 - Send and receive callbacks
 - Reading a DHT11 sensor and sending data using structs
