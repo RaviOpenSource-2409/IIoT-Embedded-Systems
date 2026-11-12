@@ -1,6 +1,6 @@
 # ESP-NOW Temperature & Humidity Monitoring
 
-Wireless communication between two ESP32 boards using the ESP-NOW protocol. The transmitter reads temperature and humidity from a DHT11 sensor and sends it to the receiver, which prints the values on the Serial Monitor. No WiFi router or internet is needed.
+Wireless communication between two ESP32 boards using the ESP-NOW protocol. The transmitter sends temperature and humidity data to the receiver, which prints the values on the Serial Monitor. No WiFi router or internet is needed.
 
 ## Hardware
 
@@ -16,9 +16,9 @@ Wireless communication between two ESP32 boards using the ESP-NOW protocol. The 
 
 ## How It Works
 
-1. The transmitter reads temperature and humidity every 2 seconds.
-2. Data is packed into a `SensorData` struct and sent using `esp_now_send()`.
-3. The receiver gets the data in the `OnDataRecv()` callback and prints it.
+1. The transmitter sends a `SensorData` struct every 2 seconds using `esp_now_send()`.
+2. The receiver gets the data in the `OnDataRecv()` callback and prints it.
+3. Communication is MAC address based: the transmitter sends data to the receiver's MAC address.
 
 ## How to Run
 
@@ -36,5 +36,10 @@ Wireless communication between two ESP32 boards using the ESP-NOW protocol. The 
 
 ## Notes
 
-- In `tx_dht11.ino`, the DHT11 reading lines are commented out and test values (23 °C, 45 %) are used.
+- The DHT11 reading lines in `tx_dht11.ino` are commented out. Fixed test values (23 °C, 45 %) are transmitted to verify ESP-NOW communication.
+- Encryption is disabled (`peerInfo.encrypt = false`).
 - Written for ESP32 Arduino core v3.x.
+
+## Demo
+
+Demo video: [LinkedIn post](https://lnkd.in/p/gZHpQnNr)
