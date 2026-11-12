@@ -4,16 +4,13 @@
 #include <WiFi.h>
 #include "DHT.h"
 
-#define DHTPIN 14      // Pin where the DHT11 is connected
+#define DHTPIN 4      // Pin where the DHT11 is connected
 #define DHTTYPE DHT11 // DHT 11 type
 
 DHT dht(DHTPIN, DHTTYPE);
 
 // Receiver MAC Address
-uint8_t receiverMAC[] = {0x1c, 0x69, 0x20, 0x90, 0xa3, 0x34}; // 1c:69:20:90:24:04
-
-
-
+uint8_t receiverMAC[] = {0x10, 0x06, 0x1C, 0xF6, 0x28, 0x00}; 
 
 struct SensorData {
     float temperature;
@@ -49,10 +46,8 @@ void setup() {
 
 void loop() {
     SensorData data;
-    /*data.temperature = dht.readTemperature();
-    data.humidity = dht.readHumidity();*/
-    data.temperature = 23;
-    data.humidity = 45;
+    data.temperature = dht.readTemperature();
+    data.humidity = dht.readHumidity();
 
     if (isnan(data.temperature) || isnan(data.humidity)) {
         Serial.println("Failed to read from DHT sensor!");
